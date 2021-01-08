@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock css %}
+
+{% block js %}
+{% endblock %}
+
+{% block title %}
+    Linguagens de Programação
+{% endblock title %}
+
+{% block container %}
+    <div  class='text-center align-middle' >
+    <h1> Lista de Linguagens de Programação</h1>
+    </div>
+    <table class="table table-bordered table-sm border-dark">
+        <thead>
+        <tr>
+            <th class='text-center align-middle'  scope="col">#</th>
+            <th class='text-center align-middle'  scope="col">Nome</th>
+            <th class='text-center align-middle'  scope="col">Dificuldade</th>
+            <th class='text-center align-middle'  scope="col">PDF</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for programminglenguage in programminglenguage_list %}
+
+            <tr>
+                <th class='text-center align-middle' scope="row">{{ forloop.counter }}</th>
+                <td class='text-center align-middle'  scope="row">{{ programminglenguage.name }}</td>
+                <td class='text-center align-middle' >
+                    {{ programminglenguage.learning_difficulty|upper }}
+                </td>
+
+                <td class='text-center align-middle' >
+                    <a class='btn btn-outline-secondary btn-sm' target="_blank" href="{% url 'core:pdf_view' programminglenguage.pk %}">Visualizar</a>
+                    <a class='btn btn-outline-primary btn-sm' href="{% url 'core:pdf_download' programminglenguage.pk %}">Exportar</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+{% endblock container %}
